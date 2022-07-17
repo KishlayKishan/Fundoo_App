@@ -1,0 +1,21 @@
+server:
+  port: 9000
+
+
+spring:
+  application:
+    name: API-Gateway
+  cloud:
+    gateway:
+      routes:
+        - id: userservice
+          uri: http://localhost:9002/
+          predicates:
+            - Path=/user/**
+        - id: noteservice
+          uri: http://localhost:9001/
+          predicates:
+            - Path=/note/**
+eureka:
+  instance:
+    hostname: localhost
